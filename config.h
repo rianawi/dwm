@@ -94,7 +94,6 @@ static Key keys[] = {
   { MODKEY,                 XK_n,             spawn,          {.v = netcmd } },
   { MODKEY|ShiftMask,       XK_w,             spawn,          {.v = browsercmd } },
   { MODKEY|ShiftMask,       XK_Return,        spawn,          {.v = termcmd } },
-  { MODKEY|ShiftMask,       XK_w,             spawn,          {.v = browsercmd } },
   { MODKEY,                 XK_s,             togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                 XK_apostrophe,    spawn,          {.v = volupcmd } },
   { MODKEY,                 XK_semicolon,     spawn,          {.v = voldncmd } },
