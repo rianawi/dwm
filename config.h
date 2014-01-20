@@ -2,22 +2,23 @@
 
 /* appearance */
 static const char font[] = "-*-xbmicons-medium-r-*-*-12-*-*-*-*-*-*-*" ","
-                           "-*-tamsyn-medium-*-*-*-14-*-*-*-*-*-*-*";
-#define NUMCOLORS 12
+                           "-*-terminus2-medium-r-*-*-12-*-*-*-*-*-*-*";
+#define NUMCOLORS 13
 static const char colors[NUMCOLORS][ColLast][9] = {
   // border foreground background
   { "#282a2e", "#373b41", "#1d1f21" }, // 1 = normal (grey on black)
   { "#f0c674", "#c5c8c6", "#1d1f21" }, // 2 = selected (white on black)
   { "#dc322f", "#1d1f21", "#f0c674" }, // 3 = urgent (black on yellow)
-  { "#282a2e", "#282a2e", "#1d1f21" }, // 4 = darkgrey on black (for glyphs)
-  { "#282a2e", "#1d1f21", "#282a2e" }, // 5 = black on darkgrey (for glyphs)
-  { "#282a2e", "#cc6666", "#1d1f21" }, // 6 = red on black
-  { "#282a2e", "#b5bd68", "#1d1f21" }, // 7 = green on black
-  { "#282a2e", "#de935f", "#1d1f21" }, // 8 = orange on black
-  { "#282a2e", "#f0c674", "#282a2e" }, // 9 = yellow on darkgrey
-  { "#282a2e", "#81a2be", "#282a2e" }, // A = blue on darkgrey
-  { "#282a2e", "#b294bb", "#282a2e" }, // B = magenta on darkgrey
-  { "#282a2e", "#8abeb7", "#282a2e" }, // C = cyan on darkgrey
+  { "#282a2e", "#282a2e", "#1d1f21" }, // 4 = darkgrey on black (triangle)
+  { "#282a2e", "#1d1f21", "#282a2e" }, // 5 = black on darkgrey (triangle)
+  { "#282a2e", "#b294bb", "#282a2e" }, // 6 = magenta on darkgrey
+  { "#282a2e", "#cc6666", "#1d1f21" }, // 7 = red on black
+  { "#282a2e", "#b5bd68", "#1d1f21" }, // 8 = green on black
+  { "#282a2e", "#81a2be", "#282a2e" }, // 9 = blue on darkgrey
+  { "#282a2e", "#f0c674", "#1d1f21" }, // A = yellow on black
+  { "#282a2e", "#f0c674", "#282a2e" }, // B = yellow on darkgrey
+  { "#282a2e", "#de935f", "#1d1f21" }, // C = orange on black
+  { "#282a2e", "#8abeb7", "#282a2e" }, // D = cyan on darkgrey
 };
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 8;        /* snap pixel */
@@ -32,19 +33,25 @@ static const Rule rules[] = {
   /* class                      instance     title  tags mask isfloating  iscentred   monitor */
   { "feh",                      NULL,        NULL,  0,        True,       True,       -1 },
   { "Gcolor2",                  NULL,        NULL,  0,        True,       True,       -1 },
+  { "Lxappearance",             NULL,        NULL,  0,        True,       True,       -1 },
+  { "Screenkey",                NULL,        NULL,  0,        True,       True,       -1 },
   { "XFontSel",                 NULL,        NULL,  0,        True,       True,       -1 },
   { "Xfd",                      NULL,        NULL,  0,        True,       True,       -1 },
   { "Firefox",                  NULL,        NULL,  1,        False,      False,      -1 },
-  { "URxvt",                    "ircmailbt", NULL,  1 << 1,   False,      False,      -1 },
+  { "URxvt",                    "chatmail",  NULL,  1 << 1,   False,      False,      -1 },
   { "Gvim",                     NULL,        NULL,  1 << 2,   False,      False,      -1 },
   { "Zathura",                  NULL,        NULL,  1 << 3,   False,      False,      -1 },
   { "libreoffice-calc",         NULL,        NULL,  1 << 3,   False,      False,      -1 },
   { "libreoffice-impress",      NULL,        NULL,  1 << 3,   False,      False,      -1 },
   { "libreoffice-startcenter",  NULL,        NULL,  1 << 3,   False,      False,      -1 },
   { "libreoffice-writer",       NULL,        NULL,  1 << 3,   False,      False,      -1 },
-  { "mpv",                      NULL,        NULL,  1 << 4,   False,      False,      -1 },
+  { "mplayer2",                 NULL,        NULL,  1 << 4,   True,       False,      -1 },
+  { "Blender",                  NULL,        NULL,  1 << 5,   True,       False,      -1 },
+  { "Gbdfed",                   NULL,        NULL,  1 << 5,   True,       True,       -1 },
   { "Gimp",                     NULL,        NULL,  1 << 5,   True,       False,      -1 },
-  { "URxvt",                    "filemgr",   NULL,  1 << 6,   False,      False,      -1 },
+  { "fontforge",                NULL,        NULL,  1 << 5,   True,       True,       -1 },
+  { "inkscape",                 NULL,        NULL,  1 << 5,   True,       False,      -1 },
+  { "URxvt",                    "ranger",    NULL,  1 << 6,   False,      False,      -1 },
 };
 
 /* layout(s) */
@@ -56,18 +63,18 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 #include "gaplessgrid.c"
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "\uE020 \uE009 \uE020",    tile },    /* first entry is default */
-  { "\uE020 \uE00A \uE020",    NULL },    /* no layout function means floating behavior */
-  { "\uE020 \uE00B \uE020",    monocle },
-  { "\uE020 \uE00C \uE020",    bstack },
-  { "\uE020 \uE00D \uE020",    gaplessgrid },
+  { "\uE019 \uE009 \uE019",    tile },    /* first entry is default */
+  { "\uE019 \uE00A \uE019",    NULL },    /* no layout function means floating behavior */
+  { "\uE019 \uE00B \uE019",    monocle },
+  { "\uE019 \uE00C \uE019",    bstack },
+  { "\uE019 \uE00D \uE019",    gaplessgrid },
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-{ MODKEY,                       KEY,      toggleview,     {.ui = 1 << TAG} }, \
-{ MODKEY|ControlMask,           KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY,                       KEY,      view,     	  {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
@@ -75,8 +82,10 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char  *dmenucmd[]     = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *termcmd[]       = { "urxvtc", NULL };
+static const char *dmenucmd[]      = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
+static const char *netcmd[]        = { "dmenu_net", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], "-i", NULL };
+static const char *termcmd[]       = { "terminator", NULL };
+static const char *browsercmd[]    = { "google-chrome-stable", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvtc", "-name", scratchpadname, "-geometry", "100x25", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "PCM", "5%+", NULL };
@@ -89,7 +98,10 @@ static const char *mpcnext[]       = { "ncmpcpp", "next", NULL };
 static Key keys[] = {
   /* modifier               key               function        argument */
   { MODKEY,                 XK_o,             spawn,          {.v = dmenucmd } },
+  { MODKEY,                 XK_n,             spawn,          {.v = netcmd } },
+  { MODKEY|ShiftMask,       XK_w,             spawn,          {.v = browsercmd } },
   { MODKEY|ShiftMask,       XK_Return,        spawn,          {.v = termcmd } },
+  { MODKEY|ShiftMask,       XK_w,             spawn,          {.v = browsercmd } },
   { MODKEY,                 XK_s,             togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                 XK_apostrophe,    spawn,          {.v = volupcmd } },
   { MODKEY,                 XK_semicolon,     spawn,          {.v = voldncmd } },
